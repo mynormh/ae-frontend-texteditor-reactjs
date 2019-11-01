@@ -32,6 +32,7 @@ function FileZone({
       }
     });
     setShowToolTip(false);
+    setSynonyms([]);
   };
 
   useEffect(() => {
