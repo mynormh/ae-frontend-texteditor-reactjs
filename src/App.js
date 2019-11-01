@@ -26,19 +26,39 @@ function App() {
     });
   }, []);
 
+  const formatWord = format => {
+    const wordToFormat = wordsCollection.find(
+      word => word.index === selectedWord.index
+    );
+    wordToFormat.format[format] = !wordToFormat.format[format];
+    return wordToFormat;
+  };
+
+  const toggleFormat = format => {
+    if (!selectedWord.index) return;
+    const newWords = [...wordsCollection];
+    newWords[selectedWord.index] = { ...formatWord(format) };
+    setWordsCollection(newWords);
+  };
+
   return (
     <div className="App">
       <header>
         <span>Simple Text Editor</span>
       </header>
       <main>
-        <ControlPanel />
+        <ControlPanel
+          toggleFormat={toggleFormat}
+          toggleFormat={toggleFormat}
+          selectedWord={selectedWord}
+        />
         {loading ? (
           <p>Loading</p>
         ) : (
           <FileZone
             wordsCollection={wordsCollection}
             setSelectedWord={setSelectedWord}
+            selectedWord={selectedWord}
           />
         )}
       </main>
