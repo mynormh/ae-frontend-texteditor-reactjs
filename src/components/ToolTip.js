@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./ToolTip.css";
 
-function ToolTip({ position, showToolTip, selectedWord: { word } }) {
+function ToolTip({
+  position,
+  showToolTip,
+  selectedWord: { word },
+  loadingSynonyms,
+  synonyms
+}) {
   const showClass = showToolTip ? "tooltip show" : "tooltip";
 
   const toolTipStyles = position
@@ -15,6 +21,13 @@ function ToolTip({ position, showToolTip, selectedWord: { word } }) {
     { showToolTip } && (
       <div className={showClass} style={{ ...toolTipStyles }}>
         <div className="title">Top synonyms for "{word}"</div>
+        {loadingSynonyms ? (
+          <p>Loading...</p>
+        ) : synonyms.length === 0 ? (
+          <p>No synonyms found</p>
+        ) : (
+          synonyms.map((synonym, index) => <div key={index}>{synonym}</div>)
+        )}
       </div>
     )
   );

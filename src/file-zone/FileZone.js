@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import "./FileZone.css";
 import Word from "../components/Word";
 import ToolTip from "../components/ToolTip";
@@ -11,6 +11,9 @@ function FileZone({
   showToolTip,
   setShowToolTip
 }) {
+  const [synonyms, setSynonyms] = useState([]);
+  const [loadingSynonyms, setLoadingSynonyms] = useState(true);
+
   const handleDoubleClick = (e, word) => {
     const newWord = { ...word };
     newWord.position = getPositions(e);
@@ -30,6 +33,17 @@ function FileZone({
     setShowToolTip(false);
   };
 
+  useEffect(() => {
+    if (!selectedWord.word) return;
+    fetch(`https://api.datamuse.com/words?ml=${selectedWord.word}&max=3`)
+      .then(res => res.json())
+      .then(res => {
+        const response = res.map(synonym => synonym.word);
+        setSynonyms(response);
+        setLoadingSynonyms(false);
+      });
+  }, [selectedWord.word]);
+
   return (
     <div id="file-zone" onClick={clearSelection}>
       <div id="file">
@@ -37,6 +51,8 @@ function FileZone({
           position={selectedWord.position}
           selectedWord={selectedWord}
           showToolTip={showToolTip}
+          loadingSynonyms={loadingSynonyms}
+          synonyms={synonyms}
         ></ToolTip>
         {wordsCollection.map((word, index) => {
           return (
