@@ -8,6 +8,15 @@ import { createWordsCollection } from "./utils";
 function App() {
   const [wordsCollection, setWordsCollection] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedWord, setSelectedWord] = useState({
+    index: null,
+    word: "",
+    format: {
+      bold: false,
+      italic: false,
+      underline: false
+    }
+  });
 
   useEffect(() => {
     getMockText().then(result => {
@@ -27,7 +36,10 @@ function App() {
         {loading ? (
           <p>Loading</p>
         ) : (
-          <FileZone wordsCollection={wordsCollection} />
+          <FileZone
+            wordsCollection={wordsCollection}
+            setSelectedWord={setSelectedWord}
+          />
         )}
       </main>
     </div>
