@@ -1,13 +1,15 @@
 import React from "react";
 import "./ControlPanel.css";
 
-function ControlPanel({ toggleFormat, selectedWord }) {
+function ControlPanel({ toggleFormat, selectedWord, changeColor }) {
   const boldClass =
     selectedWord && selectedWord.format.bold ? "text-bold " : "";
   const italicClass =
     selectedWord && selectedWord.format.italic ? "text-italic " : "";
   const underlineClass =
     selectedWord && selectedWord.format.underline ? "text-underline " : "";
+
+  // const selectedColor = selectedWord
 
   return (
     <div>
@@ -23,6 +25,13 @@ function ControlPanel({ toggleFormat, selectedWord }) {
       >
         U
       </button>
+      {/* <input
+        id="base"
+        name="base"
+        type="color"
+        value={`#${selectedWord.format.color}`}
+        onChange={e => changeColor(e)}
+      /> */}
     </div>
   );
 }

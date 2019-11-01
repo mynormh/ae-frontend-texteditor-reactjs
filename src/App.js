@@ -15,6 +15,7 @@ function App() {
       bold: false,
       italic: false,
       underline: false
+      // color: "ffc600"
     }
   });
   const [showToolTip, setShowToolTip] = useState(false);
@@ -47,6 +48,13 @@ function App() {
     setWordsCollection(newWords);
   };
 
+  // const changeColor = e => {
+  //   const wordToFormat = wordsCollection.find(
+  //     word => word.index === selectedWord.index
+  //   );
+  //   wordToFormat.format.color = `#${e.target.value}`;
+  // };
+
   const handleSynonymClick = synonym => {
     const newWords = [...wordsCollection];
     const wordToReplace = newWords.find(
@@ -64,8 +72,8 @@ function App() {
       <main>
         <ControlPanel
           toggleFormat={toggleFormat}
-          toggleFormat={toggleFormat}
           selectedWord={selectedWord}
+          // changeColor={changeColor}
         />
         {loading ? (
           <p>Loading</p>

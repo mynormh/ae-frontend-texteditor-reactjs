@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./ToolTip.css";
 
 function ToolTip({
@@ -22,6 +22,7 @@ function ToolTip({
     { showToolTip } && (
       <div className={showClass} style={{ ...toolTipStyles }}>
         <div className="title">Top synonyms for "{word}"</div>
+        <p className="info">Tip: To replace a word click on a synonym</p>
         {loadingSynonyms ? (
           <p>Loading...</p>
         ) : synonyms.length === 0 ? (
