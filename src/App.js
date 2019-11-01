@@ -3,13 +3,17 @@ import "./App.css";
 import ControlPanel from "./control-panel/ControlPanel";
 import FileZone from "./file-zone/FileZone";
 import getMockText from "./text.service";
+import { createWordsCollection } from "./utils";
 
 function App() {
-  const [wordsCollection, setWordsCollection] = useState("");
+  const [wordsCollection, setWordsCollection] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getMockText().then(function(result) {
-      setWordsCollection(result);
+    getMockText().then(result => {
+      const wordsCollection = createWordsCollection(result);
+      setWordsCollection(wordsCollection);
+      setLoading(false);
     });
   }, []);
 
@@ -20,7 +24,11 @@ function App() {
       </header>
       <main>
         <ControlPanel />
-        <FileZone />
+        {loading ? (
+          <p>Loading</p>
+        ) : (
+          <FileZone wordsCollection={wordsCollection} />
+        )}
       </main>
     </div>
   );
