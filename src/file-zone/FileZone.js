@@ -9,7 +9,8 @@ function FileZone({
   setSelectedWord,
   selectedWord,
   showToolTip,
-  setShowToolTip
+  setShowToolTip,
+  handleSynonymClick
 }) {
   const [synonyms, setSynonyms] = useState([]);
   const [loadingSynonyms, setLoadingSynonyms] = useState(true);
@@ -53,6 +54,7 @@ function FileZone({
           showToolTip={showToolTip}
           loadingSynonyms={loadingSynonyms}
           synonyms={synonyms}
+          handleSynonymClick={handleSynonymClick}
         ></ToolTip>
         {wordsCollection.map((word, index) => {
           return (

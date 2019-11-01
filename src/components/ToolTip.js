@@ -6,7 +6,8 @@ function ToolTip({
   showToolTip,
   selectedWord: { word },
   loadingSynonyms,
-  synonyms
+  synonyms,
+  handleSynonymClick
 }) {
   const showClass = showToolTip ? "tooltip show" : "tooltip";
 
@@ -26,7 +27,15 @@ function ToolTip({
         ) : synonyms.length === 0 ? (
           <p>No synonyms found</p>
         ) : (
-          synonyms.map((synonym, index) => <div key={index}>{synonym}</div>)
+          synonyms.map((synonym, index) => (
+            <div
+              key={index}
+              className="synonym"
+              onClick={() => handleSynonymClick(synonym)}
+            >
+              {synonym}
+            </div>
+          ))
         )}
       </div>
     )

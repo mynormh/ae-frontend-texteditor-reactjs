@@ -12,3 +12,13 @@
 .tooltip .title {
   font-weight: bold;
 }
+
+.synonym {
+  padding: 3px;
+  margin-bottom: 3px;
+}
+
+.synonym:hover {
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.3);
+}

@@ -47,6 +47,15 @@ function App() {
     setWordsCollection(newWords);
   };
 
+  const handleSynonymClick = synonym => {
+    const newWords = [...wordsCollection];
+    const wordToReplace = newWords.find(
+      word => word.index === selectedWord.index
+    );
+    newWords[wordToReplace.index].word = synonym;
+    setWordsCollection(newWords);
+  };
+
   return (
     <div className="App">
       <header>
@@ -67,6 +76,7 @@ function App() {
             selectedWord={selectedWord}
             showToolTip={showToolTip}
             setShowToolTip={setShowToolTip}
+            handleSynonymClick={handleSynonymClick}
           />
         )}
       </main>
