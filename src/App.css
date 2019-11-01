@@ -13,6 +13,7 @@ header {
   display: flex;
   height: 100%;
   flex-direction: column;
+  white-space: pre-wrap;
 }
 main {
   display: flex;

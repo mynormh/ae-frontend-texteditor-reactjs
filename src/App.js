@@ -17,6 +17,7 @@ function App() {
       underline: false
     }
   });
+  const [showToolTip, setShowToolTip] = useState(false);
 
   useEffect(() => {
     getMockText().then(result => {
@@ -25,6 +26,11 @@ function App() {
       setLoading(false);
     });
   }, []);
+
+  useEffect(() => {
+    if (!selectedWord.index) return;
+    setShowToolTip(true);
+  }, [selectedWord]);
 
   const formatWord = format => {
     const wordToFormat = wordsCollection.find(
@@ -59,6 +65,8 @@ function App() {
             wordsCollection={wordsCollection}
             setSelectedWord={setSelectedWord}
             selectedWord={selectedWord}
+            showToolTip={showToolTip}
+            setShowToolTip={setShowToolTip}
           />
         )}
       </main>

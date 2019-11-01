@@ -11,3 +11,15 @@ export function createWordsCollection(text) {
   }));
   return wordsCollection;
 }
+
+export function getPositions(e) {
+  const { left, top, width } = e.target.getBoundingClientRect();
+  const {
+    left: parentLeft,
+    top: parentTop
+  } = e.target.parentNode.getBoundingClientRect();
+  return {
+    x: left - parentLeft + width,
+    y: top - parentTop
+  };
+}

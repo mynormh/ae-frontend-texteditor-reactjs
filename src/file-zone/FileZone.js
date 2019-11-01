@@ -1,10 +1,19 @@
 import React, { Component } from "react";
 import "./FileZone.css";
 import Word from "../components/Word";
+import ToolTip from "../components/ToolTip";
+import { getPositions } from "../utils";
 
-function FileZone({ wordsCollection, setSelectedWord, selectedWord }) {
+function FileZone({
+  wordsCollection,
+  setSelectedWord,
+  selectedWord,
+  showToolTip,
+  setShowToolTip
+}) {
   const handleDoubleClick = (e, word) => {
     const newWord = { ...word };
+    newWord.position = getPositions(e);
     setSelectedWord(newWord);
   };
 
@@ -18,11 +27,17 @@ function FileZone({ wordsCollection, setSelectedWord, selectedWord }) {
         underline: false
       }
     });
+    setShowToolTip(false);
   };
 
   return (
     <div id="file-zone" onClick={clearSelection}>
       <div id="file">
+        <ToolTip
+          position={selectedWord.position}
+          selectedWord={selectedWord}
+          showToolTip={showToolTip}
+        ></ToolTip>
         {wordsCollection.map((word, index) => {
           return (
             <Word

@@ -1,0 +1,14 @@
+.tooltip {
+  position: absolute;
+  background: steelblue;
+  display: none;
+  padding: 10px;
+}
+
+.tooltip.show {
+  display: block;
+}
+
+.tooltip .title {
+  font-weight: bold;
+}
